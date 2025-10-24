@@ -1,0 +1,570 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+/* Variabel CSS untuk Palet Warna */
+:root {
+    --color-primary: #007bff;
+    --color-primary-dark: #0056b3;
+    --color-secondary: #f8f9fa;
+    --color-dark: #343a40;
+    --color-light: #ffffff;
+    --color-text: #495057;
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Reset dan Pengaturan Dasar */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.7;
+    background-color: var(--color-light);
+    color: var(--color-text);
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+    color: var(--color-dark);
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+h2 {
+    font-size: 2.2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-primary);
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--color-primary-dark);
+}
+
+/* Header dan Navigasi */
+header {
+    background-color: var(--color-light);
+    box-shadow: var(--shadow);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo a {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+nav li {
+    margin: 0;
+}
+
+nav a.nav-link {
+    font-weight: 600;
+    color: var(--color-text);
+    padding-bottom: 5px;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+nav a.nav-link:hover,
+nav a.nav-link.active {
+    color: var(--color-primary);
+    border-bottom-color: var(--color-primary);
+}
+
+#mobile-menu-toggle {
+    display: none;
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-primary);
+}
+
+/* Pengaturan Halaman (SPA) */
+.page {
+    display: none;
+    padding: 4rem 0;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.page.active {
+    display: block;
+}
+
+.page-content {
+    padding-top: 2rem;
+}
+
+.section-title-spacing {
+    margin-top: 3rem;
+}
+
+@keyframes fadeIn {
+    from { 
+        opacity: 0; 
+        transform: translateY(10px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
+
+/* Hero Section */
+.hero {
+    /* ==== PERUBAHAN DI SINI ==== */
+    /* background-image properti dihapus dari sini */
+    position: relative; /* Diperlukan untuk positioning slides */
+    overflow: hidden;   /* Menjaga slides tetap di dalam batas */
+    /* ==== ---------------- ==== */
+
+    background-size: cover;
+    background-position: center;
+    min-height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--color-light);
+    padding: 2rem;
+}
+
+/* ==== KELAS BARU DITAMBAHKAN ==== */
+.hero-slides {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0; /* Di belakang konten dan overlay */
+}
+
+.hero-slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 1s ease-in-out; /* Transisi fade */
+}
+
+.hero-slide.active {
+    opacity: 1;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+    z-index: 1; /* Di atas slides, di bawah konten */
+}
+
+.hero-content {
+    /* ==== PERUBAHAN DI SINI ==== */
+    position: relative;
+    z-index: 2; /* Memastikan konten selalu di atas */
+    /* ==== ---------------- ==== */
+}
+/* ==== AKHIR DARI KELAS BARU ==== */
+
+
+.hero-content h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    color: var(--color-light);
+    margin-bottom: 1rem;
+}
+
+.hero-content p {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    margin-bottom: 2rem;
+}
+
+.cta-button {
+    background-color: var(--color-primary);
+    color: var(--color-light);
+    padding: 0.8rem 1.8rem;
+    border-radius: 50px;
+    font-weight: 600;
+    display: inline-block;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: var(--color-primary-dark);
+    transform: translateY(-2px);
+    color: var(--color-light);
+}
+
+/* Portofolio (CSS Grid) */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.portfolio-item {
+    background: var(--color-light);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.portfolio-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.portfolio-item img {
+    width: 100%;
+    height: auto;
+}
+
+/* Testimonial Slider */
+.testimonial-slider {
+    width: 100%;
+    max-width: 800px;
+    margin: 2rem auto;
+    overflow: hidden;
+    background: var(--color-secondary);
+    border-radius: 8px;
+    padding: 2rem;
+}
+
+.slider-track {
+    display: flex;
+    width: 400%;
+    animation: slide-auto 12s linear infinite;
+}
+
+.slide {
+    width: 25%;
+    min-width: 25%;
+    padding: 1rem 2rem;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.slide p {
+    font-size: 1.1rem;
+    font-style: italic;
+    margin-bottom: 1rem;
+}
+
+.slide h4 {
+    font-weight: 600;
+    color: var(--color-primary);
+}
+
+@keyframes slide-auto {
+    0%    { transform: translateX(0%); }
+    20%   { transform: translateX(0%); }
+    25%   { transform: translateX(-25%); }
+    45%   { transform: translateX(-25%); }
+    50%   { transform: translateX(-50%); }
+    70%   { transform: translateX(-50%); }
+    75%   { transform: translateX(-75%); }
+    95%   { transform: translateX(-75%); }
+    100%  { transform: translateX(0%); }
+}
+
+/* Layanan (Service Cards) */
+.service-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.service-card {
+    background: var(--color-light);
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.service-icon {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.service-card h3 {
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+}
+
+.service-price {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--color-dark);
+    margin-top: 1rem;
+}
+
+/* Halaman Kontak */
+.contact-layout {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 3rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 5px rgba(0,123,255,0.3);
+}
+
+.error-message {
+    color: #dc3545;
+    font-size: 0.875rem;
+    display: block;
+    margin-top: 0.25rem;
+}
+
+#form-status {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+    display: none;
+}
+
+#form-status.success {
+    background-color: #d4edda;
+    color: #155724;
+    display: block;
+}
+
+#form-status.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    display: block;
+}
+
+.contact-info h3 {
+    border-bottom: 2px solid var(--color-primary);
+    padding-bottom: 0.5rem;
+    display: inline-block;
+}
+
+.contact-info p {
+    margin-bottom: 1rem;
+}
+
+.map-placeholder {
+    width: 100%;
+    border-radius: 8px;
+    margin-top: 1rem;
+}
+
+/* Footer */
+footer {
+    background: var(--color-dark);
+    color: var(--color-secondary);
+    text-align: center;
+    padding: 2rem 0;
+    margin-top: 4rem;
+}
+
+/* Media Queries untuk Responsif */
+
+@media (max-width: 992px) {
+    .contact-layout {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact-info {
+        margin-top: 2rem;
+    }
+    
+    .service-cards {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    h1 { 
+        font-size: 2.5rem; 
+    }
+    
+    h2 { 
+        font-size: 1.8rem; 
+    }
+    
+    .container {
+        padding: 0 1.5rem;
+    }
+    
+    /* Navigasi Mobile */
+    #main-nav ul {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: var(--color-light);
+        position: absolute;
+        top: 100%;
+        left: 0;
+        box-shadow: var(--shadow);
+        padding: 0;
+        gap: 0;
+    }
+    
+    #main-nav ul.active {
+        display: flex;
+    }
+    
+    nav li {
+        width: 100%;
+    }
+    
+    nav a.nav-link {
+        display: block;
+        padding: 1rem 2rem;
+        text-align: left;
+        border-bottom: 1px solid #eee;
+    }
+    
+    #mobile-menu-toggle {
+        display: block;
+    }
+
+    .hero {
+        min-height: 50vh;
+        padding: 1rem;
+    }
+
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .service-cards {
+        grid-template-columns: 1fr;
+    }
+    
+    .testimonial-slider {
+        padding: 1.5rem 1rem;
+    }
+    
+    .slide {
+        padding: 0.5rem 1rem;
+    }
+    
+    .slide p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 1.8rem;
+    }
+    
+    .hero-content p {
+        font-size: 0.95rem;
+    }
+    
+    .cta-button {
+        padding: 0.7rem 1.5rem;
+        font-size: 0.95rem;
+    }
+    
+    .service-card {
+        padding: 1.5rem;
+    }
+    
+    .service-icon {
+        font-size: 2.5rem;
+    }
+    
+    .container {
+        padding: 0 1rem;
+    }
+    
+    .page {
+        padding: 2rem 0;
+    }
+}
